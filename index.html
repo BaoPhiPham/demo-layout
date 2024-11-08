@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>bài 2: layout</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!-- demo background -->
+         <div class="demo1-bg"></div>
+         <div class="demo2-bg"></div>
+        
+
+        <!-- layout: dùng div vì div chỉ có 1 thuộc tính dễ thêm và chỉnh -->
+         <div class="parent clearfix">
+            <div class="left-side">left-side</div>
+            <div class="right-side">right-side</div>
+         </div>
+         <p>ahihi</p>
+
+         <!-- Dựng layout -->
+          <!-- Thẻ img ko bao giờ ăn theo cha của nó, tức là nó sẽ in ra kích
+           thước giống 100% của hình, nếu tỉ lệ nó xấu, bự thì có khi sẽ vượt 
+           ra ngoài viện luôn => fix height của container cho vừa hoặc lớn 
+           hơn 1 chút cái hình, sau đó bỏ img vào 1 cái div để chỉnh cái 
+           img bằng div sau đó chỉnh cho cái div này bằng div container
+           => kĩ thuật xử lsy cơ bản -->
+          <div class="container clearfix">
+            <div class="left-side-banner">
+                <div class="img-block">
+                    <img src="./bannerBu.jpg" >
+                </div>
+            </div> 
+
+            <div class="right-side-banner">
+                <div class="right-side-img">
+                    <div class="img-block">
+                        <img src="./bannerNho1.jpg" >
+                    </div>>
+                </div>
+                <div class="right-side-img">
+                    <div class="img-block">
+                        <img src="./bannerNho2.jpg" >
+                    </div>>
+                </div>
+            </div>
+          </div>
+        
+        <!-- layout -->
+         <div style="height: 100vh;"></div>
+         <!-- vh là chiều cao của trình duyệt -->
+    </body>
+</html>

@@ -1,0 +1,151 @@
+/* reset css */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size:  62.5%;
+    font-family: sans-serif;
+}
+
+body{
+    font-size: 1.6rem;
+}
+
+/* background */
+/* vh là độ cao của màn hình trình duyệt */
+.demo1-bg{
+    height: 100vh;
+    background-color: red;
+}
+
+.demo2-bg{
+    height: 100vh;
+    background-color: aquamarine;
+    background-image: url("./conMeo.jpg");
+    /* background-repeat-Để ảnh lặp lại hoặc ko lặp lại */
+    background-repeat: no-repeat;
+    /* Khi scale sẽ bắt đầu từ trục ngang là x và trục dọc là y theo chiều dương */
+    background-position: center;
+    background-size: cover;
+    /* làm cho hình đứng yên tạo hiệu ứng cuộn màn hình sẽ thấy ảnh từ từ xuất hiện */
+    background-attachment: fixed;
+    /* Trong thực tế các ảnh thưởng có các tỉ lệ xấu và đẹp nên có ảnh phải 
+    photoshop(chỉnh) về tỉ lệ chuẩn vs front end mình định làm trc rồi mới 
+    đưa vào front end rồi scale, chỉnh sau */
+}
+
+
+
+/* layout */
+.parent{
+    border: 3px solid black;
+}
+.left-side{
+    border: 3px solid blue;
+    width: 10rem;
+    /* trôi, nổi về trái, phỉa, ko center, khi làm vậy tk cha sẽ ko thấy và
+    đường viền sẽ hẹp lại, nếu 2 tk trôi lên sẽ cùng 1 mặt phẳng, do tách khỏi
+    dòng và tk cha nên lúc này ko 2 tk đó ko chiếm 1 dòng nửa và sẽ gom lại thành
+    1 dòng trên không và tk nào xuất hiện trc sẽ ở đầu
+    => hậu qua cảu việc này là tk cha ko thấy tk con nửa nen sẽ khép lại,
+    nếu ở dươi tk cha có 1 tk(ví dụ là p) nó sẽ bị đẩy lên(vẫn chiếm 1 dòng 
+    cùng lớp vs tk cha) 
+    
+    Lúc này ta vẫn có thể chỉnh width của 1 trong 2 tk để nó chiếm cả 1 dòng
+    */
+    float: left;
+}
+.right-side{
+    border: 3px solid red;
+    width: 10rem;
+    float: right;
+}
+.clearfix::after{
+    /* ở đây có 2 vật thể trong cha nên là :: */
+    /* ::after là virtual element-phẩn tử ảo, giả */
+    display: block;
+    /* nội dung là rỗng */
+    content: "";
+    /* cơ chế(kích thước) bằng những tk bị trôi đi */
+    clear: both ;
+}
+/* Có 2 cách để các các div lên cùng 1 hàng
+    +C1: để div lên cùng 1 hàng dùng display inline-block để chúng nó chỉ vừa
+đủ content, hành động này sẽ giúp chúng nó lên cùng 1 hàng nhưng vì là 
+inline-block nên div cha sẽ xem 2 thằng con là 'từ' và tạo ra khoảng trống nhỏ
+ở 2 div đó.Cách fixx là cho font-size của cha là 0 để nó tin rằng nó ko chứa
+gì cả, sau đó set font-size của 2 con về lại bình thường(áp dụng quy tắc những 
+class về sau càng ưu tiên hơn)=>kĩ thuật ngày xưa ô cha ta hay làm thời xưa 
+nhưng toàn. 
+=>nhược điểm-khi dồn các vật thể lên thì chỉ dồn vào được bên trái 
+nhưng đôi khi thực tế mình muốn tách 2 bên trái phải để tảo khoảng hở thì 
+ko làm đc, phải bỏ thêm 1 cái div ở giữa(rất xấu)=> ko thể chia giao diện space
+between
+
+    +C2: vẫn để 2tk là block, Đầu tiên là set lại width theo nhu cầu của mình 
+cho các div con, chọn float left or right tùy layout mình muốn. Vì dùng float, 
+div con nổi ra khỏi div cha nên cha sẽ ko nhìn thấy đám con nửa, ko ôm ai cả 
+và bó lại. Fix bằng cách cho class cha thêm classfix dể tạo phần tử ảo có 
+cùng kích thước với con để nó ôm, cái khó kĩ thuật này là nhớ .clearfix::after
+=> kĩ thuật này xịn hơn c1
+*/
+
+
+
+/* Dựng layout shopee*/
+.container{
+    /* do người dùng đôi khi sẽ thu nhỏ hoặc phóng to màn hình, dẫn tới hình
+    ảnh sẽ bị scale dãn ra(phóng to), hoặc hình sẽ bị bóp(thu nhỏ), nên ta cần 
+    fix cứng max-width, khi kéo màn hình bự ra thì chỉ bự đến 1320px, sau đó 
+    với vấn đề bị bóp khi kéo màn hình nhỏ lại ta chỉ chỉnh sao cho 1 ảnh trên
+    và 2 ảnh dưới là được để tránh bị bóp, xấu */
+    max-width: 1320px;/*tỉ lệ chuẩn trên màn hình tablet*/
+
+    /* giờ chỉnh cho div container ở giữa ta dùng thuộc tính margin, chuyền 
+    cho 2 thông số 0 và auto, 0 là trục dọc, auto là trái phải của div sẽ tăng 
+    tăng cho đến khi ra giữa*/
+    margin: 0 auto;
+
+    /* Hình thường là tỉ lệ cứng, xấu, nên thử từng height để chọn ra phù hợp
+    với chiều cao của banner mà mình muốn in ra */
+    height: 30rem;
+}
+
+.left-side-banner{
+    width: calc(70% - 5px);
+    height: 100%;
+    float: left;
+    margin-right: 5px;
+}
+
+.right-side-banner{
+    
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+.right-side-img{
+    height: calc(50% - 2.5px);
+}
+.right-side-img:nth-child(1){
+    margin-bottom: 5px;
+}
+
+.img-block{
+    /* div này chỉ chỉ dùng để chứa hình */
+    width: 100%;
+    height: 100%;
+}
+
+.img-block img{
+    /* cẩn thận là img ko phải block nên phải fix về block */
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* do tỉ lệ hình ko đẹp nên đôi khi chỉnh sẽ xấu, bể 1 chút */
+}
+/* sau khi code xong bước cuối là tắt hết đường viền */
